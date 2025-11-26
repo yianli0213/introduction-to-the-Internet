@@ -1,103 +1,106 @@
-# 🚦 台北城市儀表板與 AI 智慧交通助理 (React 實作)
+# 🌐 網際網路導論 - 課程作業與專題 (Introduction to the Internet)
 
-本專案是一個 React Web 應用程式，示範如何串接外部資料 API 與生成式 AI 模型。專案包含「台北城市儀表板 API 探索」與「Gemini AI 捷運擁擠度助理」兩大核心功能。
+歡迎來到我的課程學習歷程檔案！本倉庫 (Repository) 記錄了這學期在 **[你的學校名稱]** 修習 **網際網路導論** 課程的所有實作成果。
 
----
-
-## 🎬 專案展示影片 / Demo Video
-
-> **請點擊下方連結觀看完整解說影片（含 cURL 操作與 AI 實測）：**
->
-> 👉 **[(https://youtu.be/Vu3qq4xyTg4)]**
-> 👉 **[(https://youtu.be/hM52nsiLLpM)]**
+本學期共包含四個主要階段的實作，從基礎的靜態網頁設計，進階到 React 前端框架，最後整合 API 與 AI 模型，完成期末專題。
 
 ---
 
-## 🚀 專案功能特色
+## 📂 專案目錄 (Table of Contents)
 
-### 1. 🤖 AI 捷運擁擠度助理 (Gemini Integration)
-- **智慧模擬資料層**：實作 `fetchRealMRTData` 函式，模擬真實 IoT 設備回傳的 JSON 數據（包含紅/黃/綠燈號），根據尖峰/離峰時間自動調整擁擠狀態。
-- **Gemini 1.5 Flash 串接**：使用 Google Gemini API (`v1beta/models/gemini-1.5-flash`) 進行自然語言處理。
-- **角色扮演提示工程 (Role-Playing)**：設定 System Instruction 讓 AI 扮演「台北交通指揮中心人員」，根據數據提供專業且人性化的公車替代建議。
-- **動態 UI 回饋**：對話框顏色會根據擁擠程度（🔴 紅燈警示 / 🟢 綠燈舒適）自動變換樣式。
-
-### 2. 🏙️ 台北城市儀表板 API 驗證 (cURL)
-- 針對台北城市儀表板 (City Dashboard) 的三個不同主題 API 進行了完整的 cURL 呼叫測試與資料結構分析。
-- 驗證了 API 回傳的 JSON 數據與網頁前端顯示的一致性。
+1.  [作業一：個人網站設計 (Personal Website)](#1-作業一個人網站設計-personal-website)
+2.  [作業二：React 城市儀表板與 AI 助理](#2-作業二react-城市儀表板與-ai-助理)
+3.  [作業三：網站 API 串接實作](#3-作業三網站-api-串接實作)
+4.  [期末專題：[Brezzy Day]](#4-期末專題-final-project)
 
 ---
 
-## 🛠️ 技術棧 (Tech Stack)
+## 1. 📄 作業一：個人網站設計 (Personal Website)
 
-- **前端框架**：React
-- **HTTP 請求**：Axios (用於 REST API 串接)
-- **AI 模型**：Google Gemini API (`gemini-1.5-flash`)
-- **開發工具**：VS Code, Git, cURL
+### 📝 專案簡介
+這是本學期的第一個實作，目標是使用純 **HTML** 與 **CSS** 打造一個響應式的個人自我介紹網站。透過此作業，我掌握了網頁結構與樣式排版的核心基礎。
 
----
+### 🛠️ 使用技術
+- **HTML5**: 語意化標籤結構。
+- **CSS3**: Flexbox/Grid 排版、RWD 響應式設計。
+- **JavaScript (基礎)**: 簡單的互動效果。
 
-## 📋 實作細節說明
-
-### 📂 核心程式碼：`src/Assistant.jsx` (或 `.tsx`)
-
-這是本專案的核心 AI 元件，主要邏輯如下：
-
-1.  **資料模擬**：透過演算法判斷當前時間 (`new Date()`) 與站點名稱，回傳模擬的捷運擁擠度 JSON。
-2.  **Prompt 組合**：將「模擬數據」與「使用者問題」打包，發送給 Gemini。
-3.  **API 呼叫**：
-    ```javascript
-    // 使用 REST API 格式發送 Post 請求
-    axios.post(API_URL, {
-        contents: [{ parts: [{ text: prompt }] }],
-        system_instruction: {
-            parts: [{ text: "你是一位精通臺北市即時交通狀況的專業助理..." }]
-        }
-    })
-    ```
-4.  **錯誤處理**：包含完整的 `try...catch` 機制，能捕捉 HTTP 400/500 錯誤並提示使用者檢查 API Key。
-
-### 🔍 API 串接清單 (步驟 2 展示)
-
-| 主題 | 說明 | API Endpoint (範例) |
-| :--- | :--- | :--- |
-| **交通** | 捷運/停車場相關數據 | `.../api/v1/component/117/chart` |
-| **環境** | 降雨/空氣品質監測 | `.../api/v1/component/255/chart` |
-| **其他** | 城市相關統計數據 | `.../api/v1/component/34/chart` |
-
-*(註：上述 API 呼叫過程已收錄於 Demo 影片中)*
+### ✨ 功能亮點
+- 個人簡介與經歷展示。
+- 響應式導航欄 (RWD Navbar)。
+- [圖片的展示]
 
 ---
 
-## 📦 安裝與執行 (Installation)
+## 2. ⚛️ 作業二：React 城市儀表板與 AI 助理
 
-若您希望在本地端執行本專案，請依照以下步驟：
+### 📝 專案簡介
+本作業進入現代化前端開發，使用 **React** 框架實作。專案分為兩個部分：驗證台北城市儀表板的資料流，並實作一個結合 **Google Gemini API** 的智慧交通助理。
 
-1.  **複製專案 (Clone)**
-    ```bash
-    git clone [https://github.com/yianli0213/introduction-to-the-Internet.git](https://github.com/yianli0213/introduction-to-the-Internet.git)
-    cd introduction-to-the-Internet
-    ```
+### 🛠️ 使用技術
+- **Framework**: React (Hooks, Functional Components).
+- **HTTP Client**: Axios / cURL.
+- **AI Model**: Google Gemini API (`gemini-2.0-flash`).
 
-2.  **安裝依賴 (Install Dependencies)**
-    ```bash
-    npm install
-    # 或
-    yarn install
-    ```
+### ✨ 功能亮點
+1.  **台北城市儀表板 API 驗證**：
+    - 使用 cURL 呼叫「交通」、「環境」、「防災」等三個不同主題 API。
+    - 驗證 JSON 原始數據與網頁圖表顯示的一致性。
+2.  **AI 捷運擁擠度助理**：
+    - 實作模擬 IoT 數據邏輯，根據時段生成捷運擁擠度 (紅/黃/綠燈)。
+    - 透過 Prompt Engineering 讓 AI 扮演交通專家，根據數據提供公車替代方案。
+    - 動態 UI：對話框顏色隨擁擠程度自動變化。
 
-3.  **設定 API Key**
-    - 啟動專案後，在網頁介面上方的輸入框填入您的 **Google Gemini API Key** 即可開始對話。
-    - *(注意：為確保資安，原始碼中不包含寫死的 API Key)*
+👉 **[點擊觀看作業二 Demo 影片1](https://youtu.be/Vu3qq4xyTg4) **
+👉 **[點擊觀看作業二 Demo 影片2](https://youtu.be/hM52nsiLLpM) **
 
-4.  **啟動專案 (Start)**
-    ```bash
-    npm start
-    ```
-    開啟瀏覽器前往 `http://localhost:8081` (或終端機顯示的 port)。
+---
+
+## 3. 🔗 作業三：網站 API 串接實作
+
+### 📝 專案簡介
+基於作業一的個人網站基礎，進一步加入 **JavaScript Fetch API** 來串接真實的第三方資料，讓靜態網頁轉變為具有動態資料更新能力的網站。
+
+### 🛠️ 使用技術
+- JavaScript (ES6+).
+- Fetch API / Async Await.
+- [Github api/Apple music api].
+
+### ✨ 功能亮點
+- **即時資料獲取**：[例如：顯示當前所在地天氣資訊]。
+- **DOM 操作**：將取得的 JSON 資料動態渲染至網頁上。
+- **錯誤處理**：處理 API 請求失敗或載入中的狀態。
+
+---
+
+## 4. 🎓 期末專題 (Final Project)
+
+### 🏆 專案名稱：[Brezzy Day]
+
+### 📝 專案簡介
+這是本學期的集大成之作，整合了前三個作業所學的技術（HTML/CSS 排版、React 組件化開發、API 串接、AI 整合），解決一個實際生活中的問題。
+
+### 🛠️ 技術棧
+- **Frontend**: React / [Mongo].
+- **Backend/API**: [例如：Firebase / Node.js / 台北市政府空氣品質 API].
+- **Other**: [例如：地圖套件 / 圖表套件].
+
+### ✨ 專案特色
+- **特色功能 1**：[例如：即時取得所在地區空氣品質]。
+- **特色功能 2**：[例如：按照當日天氣溫度推薦穿著]。
+- **特色功能 3**：[例如：發送客製化通知]。
+
+👉 **[專案詳細說明與原始碼請見此資料夾](./final-project)** *(或是放上期末專案的 GitHub 連結)*
 
 ---
 
 ## 👤 作者
 
-**[你的名字/學號]**
+**[李怡安]**
+- 學號：[41171131H]
 - GitHub: [yianli0213](https://github.com/yianli0213)
+- 聯絡方式：[ann930213@gmail.com]
+
+---
+
+*本專案為 [國立師範大學] 網際網路導論課程 114 學年度作品。*
